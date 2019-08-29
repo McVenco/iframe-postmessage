@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <iframe src="grandchild.html" width="300" height="300"></iframe>
+
+    <button>Button</button>
+
+    <script type="text/javascript">
+        window.addEventListener('message', function(e){
+            var key = e.message ? 'message' : 'data';
+            var data = e[key];
+
+            console.log('child receives:', data);
+            parent.postMessage(data, '*');
+        },false);
+        
+        
+        document.querySelector('button').onclick = function () {
+            parent.postMessage("my_event", "*")
+        };
+    </script>
+</body>
+</html>

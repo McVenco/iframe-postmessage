@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button id="order">Set order number: 1234</button>
+    <button id="sku">Set article number: 9876</button>
+
+    <script type="text/javascript">
+        var order = 1234;
+        var sku = 9876;
+        var country = 'NL';
+
+        document.querySelector('#order').onclick = function () {
+            parent.postMessage({order: order, sku: sku}, "*")
+        };
+        document.querySelector('#sku').onclick = function () {
+            parent.postMessage({order: order, sku: sku, country: country}, "*")
+        };
+    </script>
+
+</body>
+</html>
