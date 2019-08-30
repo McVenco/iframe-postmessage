@@ -8,8 +8,10 @@
 </head>
 <body>
     
-    <button id="order">Set order number: 1234</button>
-    <button id="sku">Set article number: 9876</button>
+    <button id="order">Set order</button>
+    <button id="sku">Set sku</button>
+    <button id="country">Set country</button>
+    <button id="set_all">Set all</button>
 
     <script type="text/javascript">
         var order = 1234;
@@ -17,10 +19,16 @@
         var country = 'NL';
 
         document.querySelector('#order').onclick = function () {
-            parent.postMessage({order: order, sku: sku}, "*")
+            parent.postMessage({order: order}, "*");
         };
         document.querySelector('#sku').onclick = function () {
-            parent.postMessage({order: order, sku: sku, country: country}, "*")
+            parent.postMessage({sku: sku}, "*");
+        };
+        document.querySelector('#country').onclick = function () {
+            parent.postMessage({country: country}, "*");
+        };
+        document.querySelector('#set_all').onclick = function () {
+            parent.postMessage({order: order, sku: sku, country: country}, "*");
         };
     </script>
 

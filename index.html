@@ -12,11 +12,15 @@
 
     <div id="index_order">
         <h2>Order number:</h2>
-        <h3 id="order_target">onum</h3>
+        <h3 id="order_target">...</h3>
     </div>
     <div id="index_sku">
         <h2>Article number:</h2>
-        <h3 id="sku_target">sku</h3>
+        <h3 id="sku_target">...</h3>
+    </div>
+    <div id="index_country">
+        <h2>Country:</h2>
+        <h3 id="country_target">...</h3>
     </div>
 
     <script type="text/javascript">
@@ -24,8 +28,15 @@
             var key = e.message ? 'message' : 'data';
             var data = e[key];
             console.log('parent receives:', data);
-            document.getElementById('order_target').innerText = data.order;
-            document.getElementById('sku_target').innerText = data.sku;
+            if(data.order){
+                document.getElementById('order_target').innerText = data.order;
+            }
+            if(data.sku){
+                document.getElementById('sku_target').innerText = data.sku;
+            }
+            if(data.country){
+                document.getElementById('country_target').innerText = data.country;
+            }
         },false);
 
     </script>
