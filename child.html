@@ -4,26 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Child iframe</title>
 </head>
 <body>
+    Child iframe <br>
 
-    <iframe src="grandchild.html" width="300" height="300"></iframe>
+    <iframe src="grandchild.html" width="200" height="200"></iframe>
 
-    <button>Button</button>
+    <br>
+    
+    <div>Message received from grandchild: <span id="child_message">...</span></div>
+
+    <br>
+
+    <button>Send message to parent</button>
 
     <script type="text/javascript">
         window.addEventListener('message', function(e){
-            var key = e.message ? 'message' : 'data';
-            var data = e[key];
+            let key = e.message ? 'message' : 'data';
+            let data = e[key];
+            let txt = '';
 
-            console.log('child receives:', data);
+            // console.log('child receives:', data);
+            for(x in data){
+                txt += data[x] + " ";
+            }
+
+            document.getElementById('child_message').innerHTML = txt;
             parent.postMessage(data, '*');
         },false);
         
         
         document.querySelector('button').onclick = function () {
-            parent.postMessage("my_event", "*")
+            parent.postMessage("Message from child!", "*")
         };
     </script>
 </body>

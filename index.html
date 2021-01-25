@@ -4,38 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Using postMessage up and down iframes</title>
 </head>
 <body>
+    Parent frame <br>
     
-    <iframe src="child.html" width="600" height="600"></iframe>
+    <iframe src="child.html" width="300" height="400"></iframe>
 
-    <div id="index_order">
-        <h2>Order number:</h2>
-        <h3 id="order_target">...</h3>
-    </div>
-    <div id="index_sku">
-        <h2>Article number:</h2>
-        <h3 id="sku_target">...</h3>
-    </div>
-    <div id="index_country">
-        <h2>Country:</h2>
-        <h3 id="country_target">...</h3>
-    </div>
+    <br>
+
+    Message from child: <br>
+    <div>Message: <span id="childmsg_target">...</span></div>
+    
+    <br>
+
+    Messages from grandchild: <br>
+    <div>Message 1: <span id="msg1_target">...</span></div>
+    <div>Message 2: <span id="msg2_target">...</span></div>
+    <div>Message 3: <span id="msg3_target">...</span></div>
 
     <script type="text/javascript">
         window.addEventListener('message', function(e){
             var key = e.message ? 'message' : 'data';
             var data = e[key];
+
             console.log('parent receives:', data);
-            if(data.order){
-                document.getElementById('order_target').innerText = data.order;
+            if(typeof data !== 'object'){
+                document.getElementById('childmsg_target').innerText = data;
             }
-            if(data.sku){
-                document.getElementById('sku_target').innerText = data.sku;
+
+            if(data.msg_1){
+                document.getElementById('msg1_target').innerText = data.msg_1;
             }
-            if(data.country){
-                document.getElementById('country_target').innerText = data.country;
+            if(data.msg_2){
+                document.getElementById('msg2_target').innerText = data.msg_2;
+            }
+            if(data.msg_3){
+                document.getElementById('msg3_target').innerText = data.msg_3;
             }
         },false);
 

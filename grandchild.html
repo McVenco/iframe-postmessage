@@ -4,31 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Grandchild iframe</title>
 </head>
 <body>
+    Grandchild iframe <br>
     
-    <button id="order">Set order</button>
-    <button id="sku">Set sku</button>
-    <button id="country">Set country</button>
-    <button id="set_all">Set all</button>
+    Send messages to parent frame: <br>
+    <button id="msg_1">Send message 1</button>
+    <button id="msg_2">Send message 2</button>
+    <button id="msg_3">Send message 3</button>
+    <button id="send_all">Send all</button>
 
     <script type="text/javascript">
-        var order = 1234;
-        var sku = 9876;
-        var country = 'NL';
+        let msg_1 = 'I am message 1';
+        let msg_2 = 'I am message 2';
+        let msg_3 = 'I am message 3';
 
-        document.querySelector('#order').onclick = function () {
-            parent.postMessage({order: order}, "*");
+        document.querySelector('#msg_1').onclick = function () {
+            parent.postMessage({msg_1: msg_1}, "*");
         };
-        document.querySelector('#sku').onclick = function () {
-            parent.postMessage({sku: sku}, "*");
+        document.querySelector('#msg_2').onclick = function () {
+            parent.postMessage({msg_2: msg_2}, "*");
         };
-        document.querySelector('#country').onclick = function () {
-            parent.postMessage({country: country}, "*");
+        document.querySelector('#msg_3').onclick = function () {
+            parent.postMessage({msg_3: msg_3}, "*");
         };
-        document.querySelector('#set_all').onclick = function () {
-            parent.postMessage({order: order, sku: sku, country: country}, "*");
+        document.querySelector('#send_all').onclick = function () {
+            parent.postMessage({msg_1: msg_1, msg_2: msg_2, msg_3: msg_3}, "*");
         };
     </script>
 
